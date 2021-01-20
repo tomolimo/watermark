@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+   <name>Watermark</name>
+   <key>watermark</key>
+   <state>stable</state>
+   <logo>https://raw.githubusercontent.com/tomolimo/watermark/master/watermark.png</logo>
+   <description>
+      <short>
+         <fr>Ce plugin permet l'ajout d'un texte en surimpression sur les pages de GLPI.</fr>
+         <en>This plugin provides a possibility to add a text over GLPI pages.</en>
+      </short>
+      <long>
+         <en>This plugin shows a text like a watermark over GLPI pages when current profile has update rigths on GLPI configuration. This is useful when working in multi-instance environment, like GLPI Prod, GLPI Test, GLPI Dev</en>
+         <fr>Ce plugin montre un texte en surimpression sur les pages de GLPI quand le profil courrant possède des droits de modifier la configuration. Ceci est utile dans un environnement multi-instances pour les différencier. Par exemple, une sera GLPI Dev, un seconde sera GLPI Test, une autre sera GLPI Prod, etc...</fr>
+      </long>
+   </description>
+   <homepage>https://github.com/tomolimo/watermark</homepage>
+   <download>https://github.com/tomolimo/watermark/releases</download>
+   <issues>https://github.com/tomolimo/watermark/issues</issues>
+   <readme>https://github.com/tomolimo/watermark/wiki</readme>
+   <authors>
+      <author>Olivier Moron</author>
+   </authors>
+   <versions>
+     <version>
+       <num>1.0.0</num>
+       <compatibility>9.5</compatibility>
+     </version>
+   </versions>
+   <langs>
+      <lang>en_gb</lang>
+      <lang>fr_fr</lang>
+   </langs>
+   <license>GPL v2+</license>
+   <tags>
+      <fr>
+         <tag>Watermark</tag>
+      </fr>
+      <en>
+         <tag>Watermark</tag>
+      </en>
+   </tags>
+</root>
