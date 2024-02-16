@@ -65,3 +65,29 @@ function plugin_watermark_uninstall() {
 
    return true;
 }
+
+
+function plugin_watermark_redefine_menus($menu) {
+
+   // default values for watermark
+   $plugin_data['configcanupdate'] = 0;
+   $plugin_data['force_watermak'] = 0;
+   $plugin_data['watermak'] =  '';
+
+   // gets real values
+   $config = PluginWatermarkConfig::getInstance();
+   if (Config::canUpdate() || $config->fields['force_watermark']) {
+      $plugin_data['configcanupdate'] = 1;
+      $plugin_data['force_watermak'] = $config->fields['force_watermark'] ? 1 : 0;
+      $plugin_data['watermak'] = $config->fields['watermark'];
+   }
+
+   // inject them into javascript
+   $plugin_data = 'var GLPI_WATERMARK_PLUGIN_DATA = '.json_encode($plugin_data).';';
+
+   echo Html::scriptBlock("
+         $plugin_data
+      ");
+
+   return $menu;
+}

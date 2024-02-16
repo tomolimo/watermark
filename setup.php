@@ -26,7 +26,7 @@ along with GLPI. If not, see <http://www.gnu.org/licenses/>.
 --------------------------------------------------------------------------
  */
 
-define ("PLUGIN_WATERMARK_VERSION", "1.0.0");
+define ("PLUGIN_WATERMARK_VERSION", "1.1.0");
 
 /**
  * Summary of plugin_init_watermark
@@ -43,10 +43,12 @@ function plugin_init_watermark() {
       $PLUGIN_HOOKS['config_page']['watermark'] = 'front/config.form.php';
    }
 
-   $plug = new Plugin;
-   if ($plug->isActivated( 'watermark' )) {
-      $PLUGIN_HOOKS['add_javascript']['watermark'][] = 'js/watermark.js.php';
-   }
+   $PLUGIN_HOOKS['add_javascript']['watermark'][] = 'js/watermark.js';
+
+   // this hook will not redefine menu, but will output the GLPI_WATERMARK_PLUGIN_DATA js variable
+   // to pass watermark data to the js that will show (or not) the watermark on the html pages
+   $PLUGIN_HOOKS['redefine_menus']['watermark'] = 'plugin_watermark_redefine_menus';
+
 }
 
 
