@@ -84,13 +84,16 @@ class PluginWatermarkConfig extends CommonDBTM {
       echo "<tr class='tab_bg_2'>";
       echo "<td>" . __('Watermark text', 'watermark') . "</td>";
       echo "<td>";
-      echo "<input size='50' type='text' name='watermark' value='".$config->fields['watermark']."'>";
+      echo Html::input("watermark", [
+         'value' => $config->fields['watermark'],
+         'size' => 50
+         ]);
       echo "</td></tr>";
-      echo "<tr class='tab_bg_1'>";
+      echo "<tr class='tab_bg_2'>";
       echo "<td >".__('Force watermark to all profiles', 'watermark')."</td><td >";
       Dropdown::showYesNo("force_watermark", $config->fields['force_watermark']);
       echo "</td></tr>";
-      
+
       $config->showFormButtons(['candel'=>false]);
 
       return false;

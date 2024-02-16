@@ -35,12 +35,12 @@ function plugin_watermark_install() {
 
    if (!$DB->tableExists("glpi_plugin_watermark_configs")) {
          $query = "CREATE TABLE `glpi_plugin_watermark_configs` (
-			   `id` INT(10) NOT NULL AUTO_INCREMENT,
-			   `watermark` VARCHAR(250) NULL DEFAULT '' COMMENT 'Used to show a text when Config::canUpdate()' COLLATE 'utf8_general_ci',
+			   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+			   `watermark` VARCHAR(250) NULL DEFAULT '' COMMENT 'Used to show a text when Config::canUpdate()' COLLATE 'utf8mb4_general_ci',
 	         `force_watermark` TINYINT(1) NOT NULL DEFAULT '0' COMMENT 'Used to force watermark to all profiles',
 			   PRIMARY KEY (`id`)
 		      )
-		      COLLATE='utf8_general_ci'
+		      COLLATE='utf8mb4_general_ci'
 		      ENGINE=innoDB;
 		      ";
          $DB->query($query) or die("error creating glpi_plugin_watermark_configs " . $DB->error());
@@ -48,6 +48,13 @@ function plugin_watermark_install() {
          // default config
          $query = "INSERT INTO `glpi_plugin_watermark_configs` (`id`) VALUES (1);";
          $DB->query( $query ) or die("error creating default record in glpi_plugin_watermark_configs" . $DB->error());
+   } else {
+       $query = "ALTER TABLE `glpi_plugin_watermark_configs`
+            COLLATE='utf8mb4_general_ci',
+            CHANGE COLUMN `id` `id` INT UNSIGNED NOT NULL AUTO_INCREMENT FIRST,
+            CHANGE COLUMN `watermark` `watermark` VARCHAR(250) NULL DEFAULT '' COMMENT 'Used to show a text when Config::canUpdate()' COLLATE 'utf8mb4_general_ci' AFTER `id`;";
+
+       $DB->query($query) or die("error updating glpi_plugin_watermark_configs " . $DB->error());
    }
 
    return true;

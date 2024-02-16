@@ -26,7 +26,7 @@ along with GLPI. If not, see <http://www.gnu.org/licenses/>.
 --------------------------------------------------------------------------
  */
 
-define ("PLUGIN_WATERMARK_VERSION", "1.1.0");
+define ("PLUGIN_WATERMARK_VERSION", "2.0.0");
 
 /**
  * Summary of plugin_init_watermark
@@ -66,8 +66,8 @@ function plugin_version_watermark() {
       'homepage'     => 'https://github.com/tomolimo/watermark',
       'requirements' => [
          'glpi' => [
-            'min' => '9.5',
-            'max' => '9.6'
+            'min' => '10.0',
+            'max' => '10.1'
             ]
          ]
    ];
@@ -80,9 +80,9 @@ function plugin_version_watermark() {
  * @return bool
  */
 function plugin_watermark_check_prerequisites() {
-   if (version_compare(GLPI_VERSION, '9.5', 'lt')
-       && version_compare(GLPI_VERSION, '9.6', 'ge')) {
-      echo "This plugin requires GLPI >= 9.5 and < 9.6";
+   if (version_compare(GLPI_VERSION, '10.0', 'lt')
+       && version_compare(GLPI_VERSION, '10.1', 'ge')) {
+      echo "This plugin requires GLPI >= 10.0 and < 10.1";
       return false;
    } else {
       return true;
